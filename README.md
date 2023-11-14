@@ -2,8 +2,8 @@
 | [**Demo**](https://chat.lmsys.org/) | [**Discord**](https://discord.gg/HSWAKCrnFx) | [**X**](https://x.com/lmsysorg) |
 
 FastChat is an open platform for training, serving, and evaluating large language model based chatbots.
-- FastChat powers Chatbot Arena (https://chat.lmsys.org/), serving over 4 million chat requests for 30+ LLMs.
-- Arena has collected over 80K human votes from side-by-side LLM battles to compile an online [LLM Elo leaderboard](https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard).
+- FastChat powers Chatbot Arena (https://chat.lmsys.org/), serving over 5 million chat requests for 30+ LLMs.
+- Arena has collected over 100K human votes from side-by-side LLM battles to compile an online [LLM Elo leaderboard](https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard).
 
 FastChat's core features include:
 - The training and evaluation code for state-of-the-art models (e.g., Vicuna, MT-Bench).
@@ -105,7 +105,7 @@ You can use the commands below to chat with FastChat-T5. It will automatically d
 
 #### Supported Models
 FastChat supports a wide range of models, including
-LLama 2, Vicuna, Alpaca, Baize, ChatGLM, Dolly, Falcon, FastChat-T5, GPT4ALL, Guanaco, MTP, OpenAssistant, RedPajama, StableLM, WizardLM, and more.
+LLama 2, Vicuna, Alpaca, Baize, ChatGLM, Dolly, Falcon, FastChat-T5, GPT4ALL, Guanaco, MTP, OpenAssistant, OpenChat, RedPajama, StableLM, WizardLM, and more.
 
 See a complete list of supported models and instructions to add a new model [here](docs/model_support.md).
 

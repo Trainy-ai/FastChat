@@ -28,6 +28,7 @@ class SeparatorStyle(IntEnum):
     PHOENIX = auto()
     ROBIN = auto()
     FALCON_CHAT = auto()
+    CHATGLM3 = auto()
 
 
 @dataclasses.dataclass
@@ -162,6 +163,16 @@ class Conversation:
                     ret += role + "\n" + message + self.sep + "\n"
                 else:
                     ret += role + "\n"
+            return ret
+        elif self.sep_style == SeparatorStyle.CHATGLM3:
+            ret = ""
+            if self.system_message:
+                ret += system_prompt
+            for role, message in self.messages:
+                if message:
+                    ret += role + "\n" + " " + message
+                else:
+                    ret += role
             return ret
         elif self.sep_style == SeparatorStyle.CHATINTERN:
             # source: https://huggingface.co/internlm/internlm-chat-7b-8k/blob/bd546fa984b4b0b86958f56bf37f94aa75ab8831/modeling_internlm.py#L771
@@ -448,6 +459,32 @@ register_conv_template(
     )
 )
 
+# ChatGLM3 default template
+register_conv_template(
+    Conversation(
+        name="chatglm3",
+        system_template="<|system|>\n {system_message}",
+        roles=("<|user|>", "<|assistant|>"),
+        sep_style=SeparatorStyle.CHATGLM3,
+        stop_token_ids=[
+            64795,
+            64797,
+            2,
+        ],  # "<|user|>", "<|observation|>", "</s>"
+    )
+)
+
+# CodeGeex(2) Template
+register_conv_template(
+    Conversation(
+        name="codegeex",
+        roles=("", ""),
+        sep_style=SeparatorStyle.NO_COLON_SINGLE,
+        sep="\n\n",
+        stop_token_ids=[0, 2],
+    )
+)
+
 # Dolly V2 default template
 register_conv_template(
     Conversation(
@@ -477,6 +514,16 @@ register_conv_template(
         roles=("<|prompter|>", "<|assistant|>"),
         sep_style=SeparatorStyle.NO_COLON_SINGLE,
         sep="</s>",
+    )
+)
+
+# OpenChat 3.5 default template
+register_conv_template(
+    Conversation(
+        name="openchat_3.5",
+        roles=("GPT4 Correct User", "GPT4 Correct Assistant"),
+        sep_style=SeparatorStyle.FALCON_CHAT,
+        sep="<|end_of_turn|>",
     )
 )
 
